@@ -1,0 +1,27 @@
+table {
+    border: 1px solid; 
+  }
+  
+  th {
+    height: 20px;
+    border: 1px solid;
+    width: 75px;
+  }
+  
+  td {
+    border: 1px solid;
+    text-align: center;
+    width: 170px;
+  }
+  
+  .points {
+    height: 50px;
+  }
+  
+  .fouls {
+    height: 25px;
+  }
+  
+  .logField {
+    width: 15px;
+  }

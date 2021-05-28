@@ -8,14 +8,54 @@
 </head>
 <body>
     <center>
-        <button id="startTimer">Start</button>
-        <textarea name="" id="Timer" cols="9" rows="3"></textarea>
-        <button id="stopTimer">Stop</button>
+        
+
+
         <br>
+        <Table>
+          <tr>
+                <th id="teamOne"></th>
+                <th id="teamTwo"></th>
+            </tr>
+          <tr>
+              <td class="points"><h1 id="totalScoreOne"></h1></td>
+              <td class="points"><h1 id="totalScoreTwo"></h1></td>
+            </tr>
+          <tr>
+            <td class="fouls"><h5 id="totalFoulsOne"></h5></td>
+            <td class="fouls"><h5  id="totalFoulsTwo"></h5></td>
+          </tr>
+          <tr>
+            <td colspan="2" id="TimeOuts"></td>
+          </tr>
+          <tr>
+            <td colspan="2" id="half"></td>
+          </tr>
+        </Table>
         <br>
-        <input type="text" id="teamOne">
-        <input type="text" id="teamTwo">
-        <br>
+        <Table>
+          <tr>
+            <th colspan="2">log table</th>
+          </tr>
+          <tr>
+          <td id="logTeamOne"></td>
+          <td id="logTeamTwo"></td>
+          </tr>
+          <tr>
+            <td><input id="playerNumOne" class="logField"></input> scored <input class="logField" id="pointsOne"></input> points <button type="button" id="scoreOneButton" onclick="addPoint(1)">enter</button>
+</td>
+            <td><input id="playerNumTwo" class="logField"></input> scored <input class="logField" id="pointsTwo"></input> points <button type="button" id="scoreTwoButton">enter</button></td>
+          </tr>
+          <tr>
+            <td><input class="logField" id="foulOne"></input> fouled opposition <input class="logField" id="foulOppOne"></input> <button type="button" id="foulOneButton" onclick="addFoul(1)">enter</button></td>
+            <td><input class="logField" id="foulTwo"></input> fouled opposition <input class="logField" id="foulOppTwo"></input><button type="button" id="foulTwoButton" onclick="addFoul(2)">enter</button></td>
+          </tr>
+          <tr>
+              <td colspan="2">
+                  <button onclick="addTimeOut()">+time out</button>
+              </td>
+          </tr>
+        </Table>  
         
     </center>
 </body>
