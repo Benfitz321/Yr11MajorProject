@@ -113,3 +113,117 @@ function allnumeric(inputtxt){
     return false;//don't do anything
   }
 }
+function _timer(callback)
+{
+    var time = 0;     //  Timer starts at 0:00
+    var mode = 1;     //   This will count the time down 
+    var status = 0;    //    Displays whether the timer is running or stopping 
+    var timer_id;    
+    
+    // starts the timer (e.g. when clicking 'reset' it will start from 20:00)
+    this.start = function(interval)
+    {
+        interval = (typeof(interval) !== 'undefined') ? interval : 1000;
+ 
+        if(status == 0)
+        {
+            status = 1;
+            timer_id = setInterval(function()
+            {
+                switch(mode)
+                {
+                    default:
+                    if(time)
+                    {
+                        time--;
+                        generateTime();
+                        if(typeof(callback) === 'function') callback(time);
+                    }
+                    break;
+                    
+                    case 1:
+                    if(time < 106400)
+                    {
+                        time++;
+                        generateTime();
+                        if(typeof(callback) === 'function') callback(time);
+                    }
+                    break;
+                }
+            }, interval);
+        }
+    }
+    
+    //  This will stop/pause the timer (using code: timer.stop)
+    this.stop =  function()
+    {
+        if(status == 1)
+        {
+            status = 0;
+            clearInterval(timer_id);
+        }
+    }
+    
+    // This will reset the timer from its current point (e.g. 0:00) back to 20:00- this should be used when starting the second half.
+    this.reset =  function(sec)
+    {
+        sec = (typeof(sec) !== 'undefined') ? sec : 0;
+        time = sec;
+        generateTime(time);
+    }
+    
+    // This will count the timer back up to its original state (20:00) and will countdown to 0:00
+    this.mode = function(tmode)
+    {
+        mode = tmode;
+    }
+    
+    // This will display the time of the current setting 
+    this.getTime = function()
+    {
+        return time;
+    }
+    
+    
+    this.getMode = function()
+    {
+        return mode;
+    }
+    
+    
+    this.getStatus
+    {
+        return status;
+    }
+    
+    // This method will render the time variable to hour:minute:second format
+    function generateTime()
+    {
+        var second = time % 60;
+        var minute = Math.floor(time / 60) % 60;
+        
+        second = (second < 10) ? '0'+second : second;
+        minute = (minute < 10) ? '0'+minute : minute;
+        
+        $('div.timer span.second').html(second);
+        $('div.timer span.minute').html(minute);
+    }
+}
+var timer;
+ 
+$(document).ready(function(e) 
+{
+    timer = new _timer 
+    (
+        function(time)
+        {
+            if(time == 0)
+            {
+                timer.stop();
+                alert('half time!');//shows the players that half time has been achieved
+            }
+        }
+    );
+    timer.reset(0);//use the reset button to refresh the time (ready for second half)
+    timer.mode(0);
+});

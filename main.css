@@ -25,3 +25,70 @@ table {
   .logField {
     width: 15px;
   }
+  div.timer {
+    border:1px #222 solid;
+    width:300px;
+    height:60px;
+    line-height:50px;
+    font-size:50px;
+    font-family:"binary", Courier, monospace;
+    text-align:center;
+    margin:20px;
+  padding: 5px 20px
+}
+.button 1 {
+  float: left;
+  border: 1px black; 
+}
+.button 2 {
+  float: right;
+  border: 1px black;
+}
+.button1 {border-radius: 15px;}
+
+.button2 {border-radius: 15px;}
+
+.button1 {
+  border: square;
+  color: black;
+  padding: 5px 50px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  margin: 8px 5px;
+  
+}
+.button2 {
+  border: square;
+  color: black;
+  padding: 5px 50px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  margin: 8px 5px;
+  }
+.button 3 {
+  float: right;
+  border: 1px black; 
+}
+.button3 {border-radius: 5px;}
+
+.button3 {
+  border: square;
+  color: black;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 10px;
+  margin: 8px 5px;
+}
+.button1 {background-color: #4CAF50;} 
+.button2 {background-color: #FF0000;}
+.button3 {background-colour:#FF0001;}
+  
+</style>
+</head>
+<body>
