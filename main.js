@@ -115,12 +115,12 @@ function allnumeric(inputtxt){
 }
 function _timer(callback)
 {
-    var time = 0;     //  Timer starts at 0:00
-    var mode = 1;     //   This will count the time down 
-    var status = 0;    //    Displays whether the timer is running or stopping 
-    var timer_id;    
+    var Time = 0;     //  Timer starts at 0:00
+    var Countdown = 1;     //   This will count the time down 
+    var checkTimer = 0;    //    Displays whether the timer is running or stopping 
+    var countdownInterval;    //this will work alongside the function (interval) ensuring that the timer has a 1 second interval (1000 milliseconds) 
     
-    // starts the timer (e.g. when clicking 'reset' it will start from 20:00)
+    // starts the timer (via clicking 'start') (e.g. when clicking 'reset' it will start from 20:00)
     this.start = function(interval)
     {
         interval = (typeof(interval) !== 'undefined') ? interval : 1000;
@@ -178,7 +178,7 @@ function _timer(callback)
         mode = tmode;
     }
     
-    // This will display the time of the current setting 
+    // This will display the time of the countdown
     this.getTime = function()
     {
         return time;
@@ -196,7 +196,7 @@ function _timer(callback)
         return status;
     }
     
-    // This method will render the time variable to hour:minute:second format
+    // This serves as the formatting for the timer (00- minutes :00- seconds)
     function generateTime()
     {
         var second = time % 60;
