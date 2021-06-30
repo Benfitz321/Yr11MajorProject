@@ -12,16 +12,16 @@ var totalFoulsTwo = 0;//team 2's number of fouls
 var half = 1;
 var timeOuts = 0;
 
-var teamOnePlayer = []; //an array of objects each containing info on the players on team one
+var teamOnePlayer = []; //an array of objects each containing the details of the players on team one
 for(iOne = 0; iOne < 14; iOne++){
-  teamOnePlayer[iOne] = {number: "", name: "", scores: 0, fouls: 0};
+  teamOnePlayer[iOne] = {number: "", name: ""};
 }
 iOne = 0;
 listOne.innerHTML = iOne + 1 + ".";
 
-var teamTwoPlayer = []; //an array of objects each containing info on the players on team two
+var teamTwoPlayer = []; //an array of objects each containing the details of the players on team two
 for(iTwo = 0; iTwo < 14; iTwo++){
-  teamTwoPlayer[iTwo] = {number: "", name: "", scores: 0, fouls: 0};
+  teamTwoPlayer[iTwo] = {number: "", name: ""};
 }
 iTwo = 0;
 listTwo.innerHTML = iTwo + 1 + "."
@@ -29,7 +29,7 @@ listTwo.innerHTML = iTwo + 1 + "."
 resetGame();
 
 //scoreboard functions
-function addPoint(team) {
+function addPoint(team) {//increase the points when a player scores
   var playerNumOne = document.getElementById("playerNumOne").value;//the player on team 1 who scored
   var pointsOne = document.getElementById("pointsOne").value;//points team 1 just scored
   var playerNumTwo = document.getElementById("playerNumTwo").value;//the player on team 1 who scored
@@ -72,7 +72,7 @@ function addPoint(team) {
   updateScoreboard();
 }
 
-function addFoul(team) {
+function addFoul(team) {//increase the fouls 
   var foulOne = document.getElementById("foulOne").value;//The player on team 1 who foulled an opponent
   var foulOppOne = document.getElementById("foulOppOne").value;//The opponent who got fouled
   var foulTwo = document.getElementById("foulTwo").value;
@@ -82,7 +82,7 @@ function addFoul(team) {
     if (allnumeric(foulOne) && allnumeric(foulOppOne)) {
       if(findPlayerOne(foulOne) && findPlayerTwo(foulOppOne)) {
         totalFoulsOne++;
-        console.log(teamOne + " " + foulOne + " fouled opposition " + foulOppOne);
+        console.log(teamOne + " number " + foulOne + " fouled opposition " + foulOppOne);
       }
     } else {
       alert("Please input the number of the player who fouled the opponent and the number of the player who got fouled.");
@@ -91,7 +91,7 @@ function addFoul(team) {
     if (allnumeric(foulTwo) && allnumeric(foulOppTwo)) {
       if(findPlayerTwo(foulTwo) && findPlayerOne(foulOppTwo)) {
         totalFoulsTwo++;
-        console.log(teamTwo + " " + foulTwo + " fouled opposition " + foulOppTwo);
+        console.log(teamTwo + " number " + foulTwo + " fouled opposition " + foulOppTwo);
       }
     } else {
       alert("Please input the number of the player who fouled the opponent and the number of the player who got fouled.");
@@ -131,10 +131,10 @@ function updateScoreboard() {//when one of these variables change, change the sc
 }
 
 //log table functions
-function nextPlayerOne() {
+function nextPlayerOne() {//view the next player in team 1
   if (allnumeric(numOne.value) && nameOne.value != "") {
     if (iOne < 14) {
-       teamOnePlayer[iOne] = {number: numOne.value, name: nameOne.value, scores: 0, fouls: 0};
+       teamOnePlayer[iOne] = {number: numOne.value, name: nameOne.value};
        iOne++;
        numOne.value = teamOnePlayer[iOne].number;
        nameOne.value = teamOnePlayer[iOne].name;
@@ -146,20 +146,20 @@ function nextPlayerOne() {
    
 }
 
-function lastPlayerOne() {
+function lastPlayerOne() {//view the previous player in team 1
   if (iOne > 0) {
-    teamOnePlayer[iOne] = {number: numOne.value, name: nameOne.value, scores: 0, fouls: 0};
-    iOne = iOne - 1;
+    teamOnePlayer[iOne] = {number: numOne.value, name: nameOne.value};
+    iOne--;
     numOne.value = teamOnePlayer[iOne].number;
     nameOne.value = teamOnePlayer[iOne].name;
     listOne.innerHTML = iOne + 1 + ".";
   }
 }
 
-function nextPlayerTwo() {
+function nextPlayerTwo() {//view the next player in team 2
   if (allnumeric(numTwo.value) && nameTwo.value != "") {
     if (iTwo < 14) {
-      teamTwoPlayer[iTwo] = {number: numTwo.value, name: nameTwo.value, scores: 0, fouls: 0};
+      teamTwoPlayer[iTwo] = {number: numTwo.value, name: nameTwo.value};
       iTwo++;
       numTwo.value = teamTwoPlayer[iTwo].number;
       nameTwo.value = teamTwoPlayer[iTwo].name;
@@ -170,86 +170,107 @@ function nextPlayerTwo() {
   }
 }
 
-function lastPlayerTwo() {
+function lastPlayerTwo() {//view the previous player in team 2
   if (iTwo > 0) {
-    teamTwoPlayer[iTwo] = {number: numTwo.value, name: nameTwo.value, scores: 0, fouls: 0};
-    iTwo = iTwo - 1;
+    teamTwoPlayer[iTwo] = {number: numTwo.value, name: nameTwo.value};
+    iTwo--;
     numTwo.value = teamTwoPlayer[iTwo].number;
     nameTwo.value = teamTwoPlayer[iTwo].name;
     listTwo.innerHTML = iTwo + 1 + ".";
   }
 }
 
-function toScoreboard() { 
+function toScoreboard() {//switch from logtable to scoreboard and get ready to play
 if (allnumeric(numOne.value) && nameOne.value != "") {//log the current data before proceding
      teamOnePlayer[iOne] = {number: numOne.value, name: nameOne.value, scores: 0, fouls: 0};
   } 
   if (allnumeric(numTwo.value) && nameTwo.value != "") {
     teamTwoPlayer[iTwo] = {number: numTwo.value, name: nameTwo.value, scores: 0, fouls: 0};
   }
+
+  teamOne = document.getElementById("teamOneName").value;//assign the team names 
+  teamTwo = document.getElementById("teamTwoName").value;
+
+  if (teamOne == "" || teamTwo == "") {//check team names hav been entered
+    alert("Please enter team names.");
+    return false;
+  }
   
   if (teamOnePlayer[4].number == "" || teamTwoPlayer[4].number == "") {//check both teams have minimum of 5 players before going
     alert("Both teams must have minimum 5 players");
   } else {
-    for(iOne = 14; teamOnePlayer[iOne].number == ""; iOne = iOne - 1){//removes all blank values from teamOnePlayer
+    for(iOne = teamOnePlayer.length - 1; teamOnePlayer[iOne].number == ""; iOne--){//removes all blank values from teamOnePlayer
       teamOnePlayer.pop();
     }
-    for(iTwo = 14; teamTwoPlayer[iTwo].number == ""; iTwo = iTwo - 1){//removes all blank values from teamTwoPlayer
+    for(iTwo = teamTwoPlayer.length - 1; teamTwoPlayer[iTwo].number == ""; iTwo--){//removes all blank values from teamTwoPlayer
       teamTwoPlayer.pop();
     }
     teamOnePlayer.sort(function(a,b){return a.number - b.number});
     teamTwoPlayer.sort(function(a,b){return a.number - b.number});
     
+    //log the player details
+    console.log(teamOne + ":");
+    for(iOne = 0; iOne < teamOnePlayer.length; iOne++){
+      console.log(teamOnePlayer[iOne].number + ": " + teamOnePlayer[iOne].name);
+    }
+    console.log(teamTwo + ":");
+    for(iTwo = 0; iTwo < teamTwoPlayer.length; iTwo++){
+      console.log(teamTwoPlayer[iTwo].number + ": " + teamTwoPlayer[iTwo].name);
+    }
+    console.log("Game:");
+
     document.getElementById("logTable").style.display = "none"; //hide the logTable
     document.getElementById("scoreboard").style.display = "block"; //show the scoreboard
-    teamOne = document.getElementById(teamOneName.value);//assign the team names to the scoreboard
-    document.getElementById("teamOne").innerHTML = teamOne;
+    
+    document.getElementById("teamOne").innerHTML = teamOne;//assign the team names to the scoreboard
     document.getElementById("logTeamOne").innerHTML = teamOne;
-    teamTwo = document.getElementById(teamTwoName.value);
     document.getElementById("teamTwo").innerHTML = teamTwo;
     document.getElementById("logTeamTwo").innerHTML = teamTwo;
     updateScoreboard();
   }
 }
 
-function findPlayerOne(number) { //binary search for a player in team one based on their number
+function findPlayerOne(number) { //binary search for a player in team 1 based on their number
   var min = 1;//the first player in teamOnePlayer
   var max = teamOnePlayer.length;//the last player in teamOnePlayer
   var foundIt = false;
   while(foundIt == false && min <= max){
     var middle = (min + max)/2;
-    if (teamOnePlayer[middle].number = number) {
+    iOne = middle.toFixed(0) - 1;
+    if (teamOnePlayer[iOne].number == number) {
       foundIt = true;
-    } else if (number < Number(teamOnePlayer[middle].number)){
+    } else if (number < Number(teamOnePlayer[iOne].number)){
       max = middle - 1
     } else {
       min = middle + 1
     }
   }
   if (foundIt == true){
-    iOne = middle;
+    iOne = middle.toFixed(0) - 1;
+    return true;
   } else {
     alert("There is no player on team 1 with this number.");
     return false;
   }
 }
 
-function findPlayerTwo(number) {
+function findPlayerTwo(number) {//binary search for a player in team 2 based on their number
   var min = 1;//the first player in teamTwoPlayer
   var max = teamTwoPlayer.length;//the last player in teamTwoPlayer
   var foundIt = false;
   while(foundIt == false && min <= max){
     var middle = (min + max)/2;
-    if (teamTwoPlayer[middle].number = number) {
+    iTwo = middle.toFixed(0) - 1;
+    if (teamTwoPlayer[iTwo].number == number) {
       foundIt = true;
-    } else if (number < Number(teamTwoPlayer[middle].number)){
+    } else if (number < Number(teamTwoPlayer[iTwo].number)){
       max = middle - 1
     } else {
       min = middle + 1
     }
   }
   if (foundIt == true){
-    iTwo = middle;
+    iTwo = middle.toFixed(0) - 1;
     return true;
   } else {
     alert("There is no player on team 2 with this number.");
@@ -375,6 +396,8 @@ $(document).ready(function(e)
             {
                 timer.stop();
                 alert('half time!');//shows the players that half time has been achieved
+                half = 2;
+                updateScoreboard();
             }
         }
     );
