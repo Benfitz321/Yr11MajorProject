@@ -5,6 +5,7 @@ var iOne = 0;
 var teamTwo = "Guest";//team 2's name
 var numTwo = document.getElementById("numTwo");
 var nameTwo = document.getElementById("nameTwo");
+var iTwo = 0
 var totalScoreOne = 0;//team 1's total score
 var totalScoreTwo = 0;//team 2's total score
 var totalFoulsOne = 0;//team 1's number of fouls
@@ -113,8 +114,26 @@ function resetGame(){
   half = 1;
   timeOuts = 0;
   updateScoreboard();
+  document.getElementById("userManual").style.display = "none";
   document.getElementById("logTable").style.display = "block";
   document.getElementById("scoreboard").style.display = "none";
+  for(iOne = 0; iOne < 14; iOne++){
+    teamOnePlayer[iOne] = {number: "", name: ""};
+  }
+  iOne = 0;
+  listOne.innerHTML = iOne + 1 + ".";
+  document.getElementById("teamOneName").value = "";
+  numOne.value = teamOnePlayer[iOne].number;
+  nameOne.value = teamOnePlayer[iOne].name;
+    
+  for(iTwo = 0; iTwo < 14; iTwo++){
+    teamTwoPlayer[iTwo] = {number: "", name: ""};
+  }
+  iTwo = 0;
+  listTwo.innerHTML = iTwo + 1 + ".";
+  document.getElementById("teamTwoName").value = "";
+  numTwo.value = teamTwoPlayer[iTwo].number;
+  nameTwo.value = teamTwoPlayer[iTwo].name;
 }
 
 function updateScoreboard() {//when one of these variables change, change the scoreboard to match
@@ -231,12 +250,12 @@ if (allnumeric(numOne.value) && nameOne.value != "") {//log the current data bef
 }
 
 function findPlayerOne(number) { //binary search for a player in team 1 based on their number
-  var min = 1;//the first player in teamOnePlayer
-  var max = teamOnePlayer.length;//the last player in teamOnePlayer
+  var min = 0;//the first player in teamOnePlayer
+  var max = teamOnePlayer.length - 1;//the last player in teamOnePlayer
   var foundIt = false;
   while(foundIt == false && min <= max){
     var middle = (min + max)/2;
-    iOne = middle.toFixed(0) - 1;
+    iOne = middle.toFixed(0);
     if (teamOnePlayer[iOne].number == number) {
       foundIt = true;
     } else if (number < Number(teamOnePlayer[iOne].number)){
@@ -246,7 +265,7 @@ function findPlayerOne(number) { //binary search for a player in team 1 based on
     }
   }
   if (foundIt == true){
-    iOne = middle.toFixed(0) - 1;
+    iOne = middle.toFixed(0);
     return true;
   } else {
     alert("There is no player on team 1 with this number.");
@@ -255,12 +274,12 @@ function findPlayerOne(number) { //binary search for a player in team 1 based on
 }
 
 function findPlayerTwo(number) {//binary search for a player in team 2 based on their number
-  var min = 1;//the first player in teamTwoPlayer
-  var max = teamTwoPlayer.length;//the last player in teamTwoPlayer
+  var min = 0;//the first player in teamTwoPlayer
+  var max = teamTwoPlayer.length - 1;//the last player in teamTwoPlayer
   var foundIt = false;
   while(foundIt == false && min <= max){
     var middle = (min + max)/2;
-    iTwo = middle.toFixed(0) - 1;
+    iTwo = middle.toFixed(0);
     if (teamTwoPlayer[iTwo].number == number) {
       foundIt = true;
     } else if (number < Number(teamTwoPlayer[iTwo].number)){
@@ -270,7 +289,7 @@ function findPlayerTwo(number) {//binary search for a player in team 2 based on 
     }
   }
   if (foundIt == true){
-    iTwo = middle.toFixed(0) - 1;
+    iTwo = middle.toFixed(0);
     return true;
   } else {
     alert("There is no player on team 2 with this number.");
@@ -404,3 +423,12 @@ $(document).ready(function(e)
     timer.reset(0);//use the reset button to refresh the time (ready for second half)
     timer.mode(0);
 });
+
+
+function showManual() {
+  document.getElementById("userManual").style.display = "block";
+}
+
+function hideManual() {
+  document.getElementById("userManual").style.display = "none";
+}

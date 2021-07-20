@@ -8,8 +8,12 @@
     <link rel="stylesheet" href ="main.css"
 </head>
 <body>
+  <button id="helpButtton" onclick="showManual()">?</button>
     <center>
-
+      <div id="userManual">
+        <p>(type instructions here)</p>
+        <button id="closeHelpButtton" onclick="hideManual()">Close</button>
+      </div>
       <div id="logTable">
         <h4>Please enter the names of the teams and the numbers and names of the players below</h4>
     <table>
@@ -109,7 +113,9 @@
                   <button onclick="addTimeOut()">+time out</button>
               </td>
           </tr>
-        </Table> 
+        </Table>
+        <br>
+        <button onclick="resetGame()">Start new game</button> 
       </div> 
         
     </center>
