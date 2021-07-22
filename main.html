@@ -5,10 +5,68 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Basketball scoring system</title>
+    <link rel="stylesheet" href ="main.css"
 </head>
 <body>
+  <button id="helpButtton" onclick="showManual()">?</button>
     <center>
-        
+      <div id="userManual">
+        <p>(Welcome to our Basketball Scoring System! 
+         1. To begin, you will see an 'input teams' page- here, simply enter 'Team 1s' name in the field below 'Team 1'. 
+         2. Next, enter the first players number on Team 1, in the field marked below 'Number'
+         3. Next, enter player 1s first and last name to the right of the number field- marked 'First and Last Name'
+         4. After you have implemented these fields, click on the arrow marked: '˯'- downward arrow, which will allow you to enter the second players credentials 
+         5. Repeat this same procedure for the other 5 players participating on Team 1.
+         6. After team 1 has been complete, repeat this same procedure for Team 2, by first entering the Team's name.
+         7. After this procedure is complete, and all 10 players' credentials have been implemented, click on the button labelled 'Let's go!'
+         Congratulations! you have successfully inputted the Team name, player numbers, and their names!
+         As you can see, this next page includes, the countdown timer, scoreboard and log table. 
+         1. Once you are prepared to begin, first click the button labelled 'reset' under the timer, to ensure the time is set for the first half- 20:00mins
+         2. Click the button labelled: 'start' to commence the 20 minute countdown- this indicates the first half has started!
+         3. As the game starts, ensure  
+
+
+
+         )</p>
+        <button id="closeHelpButtton" onclick="hideManual()">Close</button>
+      </div>
+      <div id="logTable">
+        <h4>Please enter the names of the teams and the numbers and names of the players below</h4>
+    <table>
+      <tr>
+        <th colspan = "4">Team 1</th>
+        <th colspan = "4">Team 2</th>
+      </tr>
+      <tr>
+        <td colspan = "4"><input class="teamName" id="teamOneName"></td>
+        <td colspan = "4"><input class="teamName" id="teamTwoName"></td>
+      </tr>
+      <tr>
+        <td></td>
+        <th>Number</th>
+        <th>First and Last Name</th>
+        <td><button onclick="lastPlayerOne()">/\</button></td>
+        <td></td>
+        <th>Number</th>
+        <th>First and Last Name</th>
+        <td><button onclick="lastPlayerTwo()">/\</button></td>
+      </tr>
+      <tr>
+        <td id="listOne"></td>
+        <td><input id="numOne"></td>
+        <td><input id="nameOne"></td>
+        <td><button onclick="nextPlayerOne()">\/</button></td>
+        <td id="listTwo"></td>
+        <td><input id="numTwo"></td>
+        <td><input id="nameTwo"></td>
+        <td><button onclick="nextPlayerTwo()">\/</button></td>
+      </tr>
+    </table>
+    <br>
+    <button onclick="toScoreboard()">Let's go!</button>
+      </div>
+
+      <div id="scoreboard">  
       <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.2.min.js"></script>
       <div class="timer">
           <span class="minute">00</span>:<span class="second">10</span>
@@ -22,13 +80,17 @@
           <button class= "button3" onClick="timer.reset(1200)">Reset</button> 
          
       </div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> a3d5d2291922983d9a139b9e1185b3bddc301059
   
 
         <br>
         <Table>
           <tr>
-                <th id="teamOne"></th>
-                <th id="teamTwo"></th>
+                <th id="teamOne" class="scoreboardHeader"></th>
+                <th id="teamTwo" class="scoreboardHeader"></th>
             </tr>
           <tr>
               <td class="points"><h1 id="totalScoreOne"></h1></td>
@@ -45,7 +107,9 @@
             <td colspan="2" id="half"></td>
           </tr>
         </Table>
+
         <br>
+
         <Table>
           <tr>
             <th colspan="2">log table</th>
@@ -57,7 +121,7 @@
           <tr>
             <td><input id="playerNumOne" class="logField"></input> scored <input class="logField" id="pointsOne"></input> points <button type="button" id="scoreOneButton" onclick="addPoint(1)">enter</button>
 </td>
-            <td><input id="playerNumTwo" class="logField"></input> scored <input class="logField" id="pointsTwo"></input> points <button type="button" id="scoreTwoButton">enter</button></td>
+            <td><input id="playerNumTwo" class="logField"></input> scored <input class="logField" id="pointsTwo"></input> points <button type="button" id="scoreTwoButton" onclick="addPoint(2)">enter</button></td>
           </tr>
           <tr>
             <td><input class="logField" id="foulOne"></input> fouled opposition <input class="logField" id="foulOppOne"></input> <button type="button" id="foulOneButton" onclick="addFoul(1)">enter</button></td>
@@ -68,7 +132,18 @@
                   <button onclick="addTimeOut()">+time out</button>
               </td>
           </tr>
+<<<<<<< HEAD
         </Table>  
+=======
+        </Table>
+        <br>
+        <button onclick="resetGame()">Start new game</button> 
+      </div> 
+        
+>>>>>>> a3d5d2291922983d9a139b9e1185b3bddc301059
     </center>
+
+    <script src="main.js"></script>
+
 </body>
 </html>
