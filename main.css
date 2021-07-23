@@ -38,11 +38,11 @@ table, th, td {
     margin:20px;
   padding: 5px 20px
 }
-.button 1 {
+.button1 {
   float: left;
   border: 1px black; 
 }
-.button 2 {
+.button2 {
   float: right;
   border: 1px black;
 }
@@ -71,7 +71,7 @@ table, th, td {
   font-size: 20px;
   margin: 8px 5px;
   }
-.button 3 {
+.button3 {
   float: right;
   border: 1px black; 
 }
@@ -89,6 +89,6 @@ table, th, td {
 }
 .button1 {background-color: #4CAF50;} 
 .button2 {background-color: #FF0000;}
-.button3 {background-colour:#FF0001;}
+.button3 {background-color:#FF0001;}
   
 
