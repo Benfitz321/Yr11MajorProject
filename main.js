@@ -385,7 +385,7 @@ function _timer(callback)
     }
     
     
-    this.getStatus
+    this.getStatus = function()
     {
         return status;
     }
